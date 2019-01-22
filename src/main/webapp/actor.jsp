@@ -7,10 +7,9 @@
 <title>Index page</title>
 </head>
 <body>
-	<form action="/film" method="post">
-		<span>cod:</span> <input type="text" name="cod"> <br />
-		<span>name:</span> <input type="text" name="name"> <br />
-		<span>year:</span> <input type="text" name="year"> <br />
+	<form action="/actor" method="post">
+		<span>Name:</span> <input type="text" name="name"> <br />
+		<span>Birth year:</span> <input type="text" name="year"> <br />
 		<input type="submit">
 	</form>
 </body>
