@@ -19,16 +19,20 @@ public class ActorService {
 	public List<Actor> listAllActor() {
 		return repository.selectAllActor();
 	}
-
+	
 	public void insert(Actor actor) {
 		repository.insert(actor);
 	}
 
-	public void delete(Actor actor) {
-		repository.delete(actor);
+	public void delete(int code) {
+		repository.delete(code);
 	}
 	
-	public Actor findById(int code) {
-		return repository.findById(code);
+	public Actor findByCod(int code) {
+		return repository.findByCod(code);
+	}
+	
+	public List<Actor> filterActor(int startYear, int endYear) {
+		return repository.filterActor(startYear, endYear);
 	}
 }

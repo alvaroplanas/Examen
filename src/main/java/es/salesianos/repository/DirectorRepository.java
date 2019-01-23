@@ -6,18 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import es.salesianos.connection.AbstractConnection;
 import es.salesianos.connection.H2Connection;
 import es.salesianos.model.Director;
-import es.salesianos.model.Film;
 
-public class DirectorRepository {
+public class DirectorRepository extends Repository {
 
-	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
-	AbstractConnection manager = new H2Connection();
+	private static final String jdbcUrl = getJdbcUrl();
+	AbstractConnection manager = getManager();
+	private static final Logger log = LogManager.getLogger(DirectorRepository.class);
 
-	public List<Director> selectAllDirector() {
+	public List<Director> listAllDirector() {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		List<Director> list = new ArrayList<Director>();
@@ -32,7 +34,7 @@ public class DirectorRepository {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error(e);
 			throw new RuntimeException(e);
 		} finally {
 			manager.close(preparedStatement);
@@ -49,7 +51,7 @@ public class DirectorRepository {
 			preparedStatement.setString(1, director.getName());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error(e);
 			throw new RuntimeException(e);
 		} finally {
 			manager.close(preparedStatement);
@@ -57,15 +59,15 @@ public class DirectorRepository {
 		}
 	}
 
-	public void delete(Director director) {
+	public void delete(int code) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = conn.prepareStatement("DELETE FROM DIRECTOR WHERE cod=?");
-			preparedStatement.setInt(1, director.getCod());
+			preparedStatement.setInt(1, code);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error(e);
 			throw new RuntimeException(e);
 		} finally {
 			manager.close(preparedStatement);

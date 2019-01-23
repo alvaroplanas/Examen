@@ -4,7 +4,7 @@ public class Actor extends BaseEntity {
 
 	
 	private String name;
-	private int yearOfBirthDate;
+	private int birthYear;
 
 	public String getName() {
 		return name;
@@ -14,11 +14,11 @@ public class Actor extends BaseEntity {
 		this.name = name;
 	}
 
-	public int getYearOfBirthDate() {
-		return yearOfBirthDate;
+	public int getBirthYear() {
+		return birthYear;
 	}
 
-	public void setYearOfBirthDate(int yearOfBirthDate) {
-		this.yearOfBirthDate = yearOfBirthDate;
+	public void setBirthYear(int birthyear) {
+		this.birthYear = birthyear;
 	}
 }
