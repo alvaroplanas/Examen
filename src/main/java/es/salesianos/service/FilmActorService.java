@@ -2,6 +2,7 @@ package es.salesianos.service;
 
 import es.salesianos.model.FilmActor;
 import es.salesianos.repository.FilmActorRepository;
+import es.salesianos.model.ActorFilmDTO;
 
 public class FilmActorService {
 
@@ -9,6 +10,9 @@ public class FilmActorService {
 
 	public void insert(FilmActor filmActor) {
 		repository.insert(filmActor);
+	}
+	public ActorFilmDTO filterActorFilm(String role) {
+		return repository.filterActorFilm(role);
 	}
 
 }
