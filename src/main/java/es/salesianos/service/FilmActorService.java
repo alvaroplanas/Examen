@@ -3,11 +3,15 @@ package es.salesianos.service;
 import es.salesianos.model.FilmActor;
 import es.salesianos.repository.FilmActorRepository;
 import es.salesianos.model.ActorFilmDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FilmActorService {
 
-	FilmActorRepository repository = new FilmActorRepository();
-
+	@Autowired
+	FilmActorRepository repository;
+	
 	public void insert(FilmActor filmActor) {
 		repository.insert(filmActor);
 	}

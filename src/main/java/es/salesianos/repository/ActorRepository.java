@@ -1,6 +1,7 @@
 package es.salesianos.repository;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import es.salesianos.connection.AbstractConnection;
 import es.salesianos.connection.H2Connection;
 import es.salesianos.model.Actor;
 
+@org.springframework.stereotype.Repository
 public class ActorRepository extends Repository{
 
 	private static final String jdbcUrl = getJdbcUrl();

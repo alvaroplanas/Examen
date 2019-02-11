@@ -1,4 +1,4 @@
-package es.salesianos.servlet;
+package es.salesianos.controller;
 
 import java.io.IOException;
 
@@ -8,22 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.salesianos.model.Actor;
-import es.salesianos.service.ActorService;
+import es.salesianos.model.Director;
+import es.salesianos.service.DirectorService;
 import java.util.List;
 
-public class ActorServlet extends HttpServlet {
+public class DirectorServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private ActorService service = new ActorService();
+	private DirectorService service = new DirectorService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Actor actor = service.assembleActorFromRequest(req);
-		service.insert(actor);
+		Director director = service.assembleDirectorFromRequest(req);
+		service.insert(director);
 		doAction(req, resp);
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String code = req.getParameter("cod");
@@ -34,22 +34,12 @@ public class ActorServlet extends HttpServlet {
 	}
 
 	private void doAction(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		String startDateString = req.getParameter("startYear");
-		if (startDateString != null) {
-			int startDate = Integer.parseInt(startDateString);
-			int endDate = Integer.parseInt(req.getParameter("endYear"));
-			List<Actor> filteredActors = service.filterActor(startDate, endDate);
-			req.setAttribute("listAllActor", filteredActors);
-		} else {
-			List<Actor> listAllActor = service.listAllActor();
-			req.setAttribute("listAllActor", listAllActor);
-		}
-
-		redirect(req, resp);
+		List<Director> listAllDirector = service.listAllDirector();
+		req.setAttribute("listAllDirector", listAllDirector);
 	}
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/actor.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/director.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

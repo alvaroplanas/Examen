@@ -13,6 +13,7 @@ import es.salesianos.connection.AbstractConnection;
 import es.salesianos.connection.H2Connection;
 import es.salesianos.model.Film;
 
+@org.springframework.stereotype.Repository
 public class FilmRepository extends Repository {
 
 	private static final String jdbcUrl = getJdbcUrl();
