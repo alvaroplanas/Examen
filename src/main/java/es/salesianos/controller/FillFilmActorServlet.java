@@ -20,7 +20,7 @@ public class FillFilmActorServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		FilmActor filmActor = FilmActorAssembler.assembleFilmActorFrom(req);
+		FilmActor filmActor = new FilmActor();
 		service.insert(filmActor);
 		doAction(req, resp);
 	}
