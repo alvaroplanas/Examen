@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.salesianos.model.Film;
-import es.salesianos.service.FilmService;
+import es.salesianos.service.IFIlmService;
 
 @Controller
 public class FilmController {
 
 	@Autowired
-	private FilmService service;
+	private IFIlmService service;
 
 	@PostMapping("/insertFilm")
 	protected ModelAndView insertFilm(Film film) {

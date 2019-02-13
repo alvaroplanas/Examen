@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import es.salesianos.model.Actor;
-import es.salesianos.service.ActorService;
+import es.salesianos.service.IActorService;
 import java.util.List;
 
 @Controller
 public class ActorController {
 	@Autowired
-	private ActorService service;
-
+	private IActorService service;
 	@PostMapping("/insertActor")
 	protected ModelAndView insertActor(Actor actor) {
 		service.insert(actor);
@@ -25,10 +24,8 @@ public class ActorController {
 	
 	@GetMapping("/deleteActor")
 	protected ModelAndView deleteActor(@RequestParam Integer cod) {
-	if (cod != null) {
-			service.delete(cod);
-		}
-	return loadList();
+		service.delete(cod);
+		return loadList();
 	}
 
 	@GetMapping("/actor")
